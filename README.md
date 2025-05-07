@@ -52,9 +52,12 @@ Ajouter des fonctionnalisés supplémentaires à votre projet comme :
 ![donnee enntre](./captureEcran/donneeBankaccount.png)
 ![donnee entre dan operation](./captureEcran/donnebankoperation.png)
 
-#### Nous aloons utiliser la strategy table_per_classe
+#### Nous allons utiliser la strategie table_per_classe
+![table par classe](./captureEcran/tableperclss.png)
 
-4. 
+#### Nous alolons utiliser la strategie join table 
+![table par classe](./captureEcran/joined.png)
+
 4. 
 
 
