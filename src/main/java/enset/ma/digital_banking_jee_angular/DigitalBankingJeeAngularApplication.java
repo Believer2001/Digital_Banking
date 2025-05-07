@@ -1,9 +1,11 @@
 package enset.ma.digital_banking_jee_angular;
 
+import enset.ma.digital_banking_jee_angular.entities.AccountOperation;
 import enset.ma.digital_banking_jee_angular.entities.CurrentAccount;
 import enset.ma.digital_banking_jee_angular.entities.Customer;
 import enset.ma.digital_banking_jee_angular.entities.SavingAccount;
 import enset.ma.digital_banking_jee_angular.enums.AccountStatus;
+import enset.ma.digital_banking_jee_angular.enums.OperationType;
 import enset.ma.digital_banking_jee_angular.repositories.AccountOperationRepository;
 import enset.ma.digital_banking_jee_angular.repositories.BankAccountRepository;
 import enset.ma.digital_banking_jee_angular.repositories.CustomerRepository;
@@ -54,6 +56,19 @@ public class DigitalBankingJeeAngularApplication {
                 savingAccount.setCustomer(customer);
                 savingAccount.setInterestRate(5.5);
                bankAccountRepository.save(savingAccount);
+            });
+
+
+            bankAccountRepository.findAll().forEach(account->{
+                for(int i =0;i<10;i++)
+                {
+                    AccountOperation accountOperation =new AccountOperation();
+                    accountOperation.setOperationDate(new Date());
+                    accountOperation.setAmount(Math.random()*12000);
+                    accountOperation.setOperationType(Math.random()>0.5? OperationType.DEBIT:OperationType.CREDIT);
+                    accountOperation.setBankAccount(account);
+                    accountOperationRepository.save(accountOperation);
+                }
             });
 
 

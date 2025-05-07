@@ -49,7 +49,11 @@ Ajouter des fonctionnalisés supplémentaires à votre projet comme :
 3. Créer les interfaces JPA Repository basées sur Spring Data
 ![repository](./captureEcran/epositorry.png)
 ![donnee enntre](./captureEcran/donneeEntree.png) 
-4. ![donnee enntre](./captureEcran/donneeBankaccount.png)
+![donnee enntre](./captureEcran/donneeBankaccount.png)
+![donnee entre dan operation](./captureEcran/donnebankoperation.png)
+
+#### Nous aloons utiliser la strategy table_per_classe
+
 4. 
 4. 
 
