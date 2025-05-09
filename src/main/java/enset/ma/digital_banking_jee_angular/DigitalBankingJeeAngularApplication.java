@@ -1,5 +1,6 @@
 package enset.ma.digital_banking_jee_angular;
 
+import enset.ma.digital_banking_jee_angular.dto.CustomerDTO;
 import enset.ma.digital_banking_jee_angular.entities.*;
 import enset.ma.digital_banking_jee_angular.enums.AccountStatus;
 import enset.ma.digital_banking_jee_angular.enums.OperationType;
@@ -34,11 +35,11 @@ public class DigitalBankingJeeAngularApplication {
         return args -> {
             Stream.of("Hassan", "Imane","Mohammed").forEach(name ->{
 
-                Customer customer = new Customer();
-                customer.setNom(name);
-                customer.setEmail(name+"@gmail.com");
+                CustomerDTO customerDTO = new CustomerDTO();
+                customerDTO.setNom(name);
+                customerDTO.setEmail(name+"@gmail.com");
 
-                bankAccountService.saveCustomer(customer);
+                bankAccountService.saveCustomer(customerDTO);
             });
             bankAccountService.lisCustomers().forEach(customer -> {
                 try {

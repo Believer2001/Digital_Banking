@@ -63,3 +63,14 @@ Ajouter des fonctionnalisés supplémentaires à votre projet comme :
 
 ![le test de la couche service ](./captureEcran/service.png)
 
+#### Ajout de la couche DTO, le mapping de la couuche dto et de la  dao et le test de l api et ajout de swager pour es test
+![get ](./captureEcran/getcust.png)
+![get par id ](./captureEcran/getcust1.png)
+![ pour eregistrer](./captureEcran/post.png)
+![pour mettre a jour](./captureEcran/put.png)
+![ pour faire la suppression](./captureEcran/delete.png)
+
+
+
+
+
