@@ -14,8 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "TYPE",length = 4,discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE",length = 4,discriminatorType = DiscriminatorType.STRING)
 public abstract class BankAccount {
     @Id
     private  String id;
@@ -25,7 +25,7 @@ public abstract class BankAccount {
      private AccountStatus status;
      @ManyToOne
      private  Customer customer;
-     @OneToMany(mappedBy = "bankAccount",fetch = FetchType.EAGER)
+     @OneToMany(mappedBy = "bankAccount",fetch = FetchType.LAZY)
      private List<AccountOperation> accountOperations;
 
 }

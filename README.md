@@ -58,6 +58,8 @@ Ajouter des fonctionnalisés supplémentaires à votre projet comme :
 #### Nous alolons utiliser la strategie join table 
 ![table par classe](./captureEcran/joined.png)
 
-4. 
+ 
+#### La couche web 
 
+![le test de la couche service ](./captureEcran/service.png)
 
