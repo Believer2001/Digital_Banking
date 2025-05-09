@@ -1,6 +1,9 @@
 package enset.ma.digital_banking_jee_angular;
 
+import enset.ma.digital_banking_jee_angular.dto.BankAccountDTO;
+import enset.ma.digital_banking_jee_angular.dto.CurrentAccountDTO;
 import enset.ma.digital_banking_jee_angular.dto.CustomerDTO;
+import enset.ma.digital_banking_jee_angular.dto.SavingAccountDTO;
 import enset.ma.digital_banking_jee_angular.entities.*;
 import enset.ma.digital_banking_jee_angular.enums.AccountStatus;
 import enset.ma.digital_banking_jee_angular.enums.OperationType;
@@ -45,11 +48,20 @@ public class DigitalBankingJeeAngularApplication {
                 try {
                     bankAccountService.saveCurrentBankAccount(Math.random() * 90000, 9000, customer.getId());
                     bankAccountService.saveSavingBankAccount(Math.random() * 120000, 5.5, customer.getId());
-                    List<BankAccount> bankAccount = bankAccountService.bankAccountList();
-                    for (BankAccount bankAccount1 : bankAccount) {
+                    List<BankAccountDTO> bankAccount = bankAccountService.bankAccountList();
+                    for (BankAccountDTO bankAccount1 : bankAccount) {
                         for (int i = 0; i < 10; i++) {
-                            bankAccountService.credit(bankAccount1.getId(), 10000 + Math.random() * 12000, "Credit");
-                            bankAccountService.debit(bankAccount1.getId(), 1000 + Math.random() * 9000, "Debit");
+
+                            String accountId;
+                            if (bankAccount1 instanceof SavingAccountDTO) {
+                                accountId=((SavingAccountDTO) bankAccount1).getId();
+                            }
+                            else {
+                                accountId=((CurrentAccountDTO) bankAccount1).getId();
+                            }
+                                bankAccountService.credit(accountId, 10000 + Math.random() * 12000, "Credit");
+                                bankAccountService.debit(accountId, 1000 + Math.random() * 9000, "Debit");
+
                         }
                     }
 

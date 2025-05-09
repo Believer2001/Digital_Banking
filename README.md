@@ -69,6 +69,12 @@ Ajouter des fonctionnalisés supplémentaires à votre projet comme :
 ![ pour eregistrer](./captureEcran/post.png)
 ![pour mettre a jour](./captureEcran/put.png)
 ![ pour faire la suppression](./captureEcran/delete.png)
+ La documentation swagger et l interface de test 
+![interface de test](./captureEcran/interfacetest.png)
+![interface de docs](./captureEcran/interfacedocs.png)
+
+![ historique de la page ](./captureEcran/testHistory.png)
+![ historique de la page ](./captureEcran/size3.png)
 
 
 
