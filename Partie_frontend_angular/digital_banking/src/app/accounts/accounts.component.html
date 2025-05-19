@@ -1,0 +1,32 @@
+<div class="container mt-2">
+  <div class="card"  >
+
+    <div class="card-header"> Accounts </div>
+    <div class="card-body" >
+      <div class="table">
+        <thead>
+        <tr>    <th>  ID    </th>    <th>      Balance    </th>    <th>  date de création    </th>
+          <th>
+            Customer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          @for (p of accounts;track  p) {
+            <tr>
+              <td>{{p.id}}</td>
+              <td>{{p.balance}}</td>
+              <td>{{p.createdAt}}</td>
+             <td >
+               <a class="btn btn-outline-primary"   routerLink="/#"> {{p.customerDTO.nom}}</a>
+
+             </td>
+
+            </tr>
+          }
+        </tbody>
+      </div>
+    </div>
+
+  </div>
+</div>

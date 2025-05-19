@@ -7,15 +7,13 @@ import enset.ma.digital_banking_jee_angular.dto.BankAccountDTO;
 import enset.ma.digital_banking_jee_angular.exceptions.BankAcountNotFoundException;
 import enset.ma.digital_banking_jee_angular.services.BankAccountService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class AccountOperationRestController {
 
     private BankAccountService bankAccountService;
