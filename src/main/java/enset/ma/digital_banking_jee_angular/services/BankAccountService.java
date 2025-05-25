@@ -27,6 +27,7 @@ public interface BankAccountService {
     List<BankAccountDTO> bankAccountList();
 
     CustomerDTO getCustomer(Long customerId);
+   List<CustomerDTO> getCustomerByNom(String customerName);
 
     CustomerDTO updateCustomer(CustomerDTO customerDTO);
 

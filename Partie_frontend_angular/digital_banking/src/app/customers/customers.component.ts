@@ -1,15 +1,19 @@
 
 import {Component, OnInit} from '@angular/core';
 import {CustomersService} from '../services/customers.service';
-import {JsonPipe, NgIf} from '@angular/common';
+import {AsyncPipe, JsonPipe, NgForOf, NgIf} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {catchError, Observable, throwError} from 'rxjs';
+import {Customer} from '../model/customer.model';
 
 @Component({
   selector: 'app-customers',
   imports: [
     NgIf,
     ReactiveFormsModule,
-    JsonPipe
+    JsonPipe,
+    AsyncPipe,
+    NgForOf
 
 
   ],
@@ -18,7 +22,8 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 })
 export class CustomersComponent implements  OnInit{
 
-  customers: any;
+  errMessage!: string;
+  customers!: Observable<Array<Customer>>;
   searchFormGroup!: FormGroup;
   constructor(private customersService:CustomersService,private  fb :FormBuilder) {
   }
@@ -27,21 +32,31 @@ export class CustomersComponent implements  OnInit{
     this.searchFormGroup =this.fb.group({keyword :this.fb.control("")});
     this.getAllCustomers()
   }
+
+
  getAllCustomers()
  {
-   this.customersService.getAllCustomers().subscribe({
-     next : resp =>{
-       this.customers =resp;
-   },
-     error : err => {
-     console.log(err);}
-     }
-   );
+  this.customers= this.customersService.getAllCustomers().pipe(
+    catchError(err => {
+      this.errMessage=err;
+      return throwError(err)
+    })
+  )
 
 
  }
 
   handleSearchCustomer() {
  let kw = this.searchFormGroup?.value.keyword
+    this.customers =this.customersService.searchCustomers(kw).pipe(
+      catchError(err => {
+        this.errMessage=err;
+        return  throwError(err);
+      })
+    )
+
+
   }
+
+  protected readonly FormGroup = FormGroup;
 }

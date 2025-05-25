@@ -17,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -217,7 +218,17 @@ public class BankAccountServiceImpl implements  BankAccountService{
     }
 
 
-@Override
+
+    @Override
+    public List<CustomerDTO> getCustomerByNom(String customerName) {
+        List<Customer> customerslists=customerRepository.findByNomContains(customerName);
+         return
+        customerslists.stream().map(cust->dtoMapper.fromCustomerToCustomerDTO(cust))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
 public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
         log.info("saving a new customer");
         Customer customer =dtoMapper.fromCustomerDTOToCustomer(customerDTO);
