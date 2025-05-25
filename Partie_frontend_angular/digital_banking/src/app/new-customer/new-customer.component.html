@@ -9,14 +9,28 @@
 
         <div class="mb-3">
           <label class="form-label">Name :</label>
-          <input type="text" formControlName="name" class="form-control">
+          <input type="text" formControlName="nom" class="form-control">
+          <span *ngIf="newCustomerFormGroup.controls['nom'].touched
+             && newCustomerFormGroup.controls['name'].errors
+              &&newCustomerFormGroup.controls['name'].errors!['required']"
+                class="text-danger">
+            Names is required
+          </span>
+
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email : </label>
           <input type="text" formControlName ="email" class="form-control">
-        </div>
-        <button class="btn btn-info">Save</button>
+          <span *ngIf="newCustomerFormGroup.controls['email'].touched
+             && newCustomerFormGroup.controls['enail'].errors
+              &&newCustomerFormGroup.controls['email'].errors!['required']"
+                class="text-danger">
+            Names is required
+          </span>
+
+        </div >
+        <button [disabled]="!newCustomerFormGroup.valid" class="btn btn-info">Save</button>
       </form>
     </div>
 

@@ -3,8 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {CustomersService} from '../services/customers.service';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {catchError, Observable, throwError} from 'rxjs';
+import {catchError, map, Observable, throwError} from 'rxjs';
 import {Customer} from '../model/customer.model';
+import {resolve} from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-customers',
@@ -59,4 +60,33 @@ export class CustomersComponent implements  OnInit{
   }
 
   protected readonly FormGroup = FormGroup;
+
+
+  handleUpdateCustomer(p: Customer) {
+
+  }
+
+  handleDeleteCustomer(p: Customer) {
+    let  conf=confirm("Are you sure ?")
+    if(!conf)
+      return;
+    this.customersService.deleteCustomer(p.id).subscribe(
+      {
+        next :(resp)=>{
+          this.customers=this.customers.pipe(
+            map(data=>{
+              let  index = data.indexOf(p);
+              data.slice(index,1)
+              return data;
+            })
+          )
+
+    },
+        error:err=>{
+          console.log(err);
+
+        }
+      }
+    )
+  }
 }

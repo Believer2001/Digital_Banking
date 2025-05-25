@@ -34,6 +34,19 @@
             <td>{{p.nom}}</td>
             <td>{{p.email}}</td>
 
+            <td>
+              <button (click)="handleUpdateCustomer(p)" class="btn btn-outline-info">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+
+
+            <td>
+              <button (click)="handleDeleteCustomer(p)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+
           </tr>
 
 

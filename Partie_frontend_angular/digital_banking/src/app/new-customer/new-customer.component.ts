@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Customer} from '../model/customer.model';
 import {CustomersService} from '../services/customers.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-customer',
@@ -16,14 +17,15 @@ export class NewCustomerComponent {
 
   newCustomerFormGroup!: FormGroup
 
-  constructor(private  fb:FormBuilder,private  customerService: CustomersService) {
+  constructor(private  fb:FormBuilder,private  customerService: CustomersService,
+              private router:Router) {
 
   }
 
   ngOnInit():void{
     this.newCustomerFormGroup=this.fb.group( {
-      nom : this.fb.control(null),
-        email :this.fb.control(null),
+      nom : this.fb.control(null,[Validators.required,Validators.minLength(2)]),
+        email :this.fb.control(null,[Validators.email,Validators.required]),
 
 
     })
@@ -36,8 +38,13 @@ export class NewCustomerComponent {
     this.customerService.saveCustomer(customer).subscribe({
       next :data=>{
         alert("Customer has been successfully  saved");
+       /// this.newCustomerFormGroup.reset();
+
+        this.router.navigateByUrl("/customers");
       },error : err => { console.log(err);
       }
       });
   }
+
+  protected readonly Validators = Validators;
 }
