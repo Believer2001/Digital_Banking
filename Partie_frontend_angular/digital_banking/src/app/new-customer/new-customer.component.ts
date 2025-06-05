@@ -4,10 +4,12 @@ import {Observable} from 'rxjs';
 import {Customer} from '../model/customer.model';
 import {CustomersService} from '../services/customers.service';
 import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-new-customer',
   imports: [
+    CommonModule,
     ReactiveFormsModule
   ],
   templateUrl: './new-customer.component.html',
