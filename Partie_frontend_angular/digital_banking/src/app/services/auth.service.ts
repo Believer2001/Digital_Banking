@@ -13,8 +13,8 @@ import {AuthMyJwtPayload} from '../model/auth.MyJwtPayload';
 export class AuthService {
   backendHost: string="http://localhost:8083/";
   roles :any;
-  username: any;
-  accessToken!: string;
+  username!: string;
+  accessToken!: any;
   isAuthenticated :boolean =false;
 
 
@@ -38,11 +38,15 @@ export class AuthService {
     this.accessToken =data['access_token'];
     let decodeJwt = jwtDecode<AuthMyJwtPayload>(this.accessToken);
     this.username=decodeJwt.sub;
+    console.log(this.username);
     this.roles =decodeJwt.scope;
 
   }
 
 
-
-
+  logout() {
+ this.isAuthenticated=false;
+ this.accessToken=undefined;
+ this.username ="";
+  }
 }

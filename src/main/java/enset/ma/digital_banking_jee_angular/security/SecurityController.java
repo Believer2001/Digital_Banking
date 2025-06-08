@@ -48,6 +48,7 @@ public class SecurityController {
                         .map(a->a.getAuthority() )
                 .collect(Collectors.joining(" "));
         JwtClaimsSet jwtClaimSet= JwtClaimsSet.builder()
+                .subject(username)
                 .issuedAt(instant)
                 .expiresAt(instant.plus(10, ChronoUnit.MINUTES))
                 .claim("scope",scope)
