@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,10 @@ import {CommonModule} from '@angular/common';
 })
 export class LoginComponent {
   formLogin! : FormGroup;
- constructor(private fb : FormBuilder) {
+
+
+ constructor(private fb : FormBuilder,private  authService: AuthService,
+             private  router: Router) {
 
  }
  ngOnInit()
@@ -25,6 +31,16 @@ export class LoginComponent {
  }
 
   handleLogin() {
-    console.log(this.formLogin.value);
+   let username = this.formLogin.value.username;
+   let password = this.formLogin.value.password;
+   this.authService.login(username,password).subscribe(
+     {
+       next :data => {
+         this.authService.loadProfile(data);
+         this.router.navigateByUrl("/admin");
+       },
+       error :err => {console.log(err)}
+     }
+   )
   }
 }

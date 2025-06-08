@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {AccountsService} from '../services/accounts.service';
 import {RouterLink} from '@angular/router';
 
@@ -24,16 +23,13 @@ export class AccountsComponent implements  OnInit{
 
   getAllAccounts(){
     this.accountService.getAllAccounts().subscribe({
- next : resp =>{
-   this.accounts=resp;
- },
-    error: err=>
-    {
+     next : resp =>{
+     this.accounts=resp;
+     },
+     error: err=>
+     {
       console.log(err);
     }
     });
   }
-
-
-
 }

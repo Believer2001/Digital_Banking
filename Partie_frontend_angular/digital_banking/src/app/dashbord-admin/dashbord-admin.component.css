@@ -1,0 +1,6 @@
+.dashboard-gray-dark {
+  background-color: #2e2e2e; /* gris foncé */
+  color: #e0e0e0; /* texte clair gris clair */
+  min-height: 100vh;
+  padding: 20px;
+}

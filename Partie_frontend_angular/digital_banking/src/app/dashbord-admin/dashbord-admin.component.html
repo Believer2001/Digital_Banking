@@ -1,0 +1,68 @@
+<div class="container mt-4 dashboard-gray-dark">
+
+  <!-- Nombre total clients -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card text-white bg-primary text-center p-3">
+        <h5>Total clients</h5>
+        <h2>{{ totalClients }}</h2>
+      </div>
+    </div>
+
+    <!-- Montant total en circulation -->
+    <div class="col-md-3">
+      <div class="card text-white bg-success text-center p-3">
+        <h5>Montant total en circulation</h5>
+        <h2>{{ montantTotalCirculation | number }} €</h2>
+      </div>
+    </div>
+
+    <!-- Transactions du jour - nombre -->
+    <div class="col-md-3">
+      <div class="card text-white bg-info text-center p-3">
+        <h5>Transactions du jour</h5>
+        <h2>{{ transactionsDuJourNombre }}</h2>
+      </div>
+    </div>
+
+    <!-- Transactions du jour - montant -->
+    <div class="col-md-3">
+      <div class="card text-white bg-warning text-center p-3">
+        <h5>Montant transactions (€)</h5>
+        <h2>{{ transactionsDuJourMontant | number }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Répartition par type de compte (Pie Chart) -->
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <h5>Répartition par type de compte</h5>
+      <canvas baseChart
+              [data]="repartitionTypesData"
+              [type]="repartitionTypesChartType">
+      </canvas>
+    </div>
+
+    <!-- Clients actifs / inactifs (Bar chart) -->
+    <div class="col-md-6">
+      <h5>Clients actifs / inactifs</h5>
+      <canvas baseChart
+              [data]="clientsActifsInactifsData"
+              [type]="clientsActifsInactifsChartType">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Transactions du jour - Montant sur 7 jours (Bar chart) -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h5>Transactions montant sur 7 jours</h5>
+      <canvas baseChart
+              [data]="transactionsMontant7JoursData"
+              [type]="transactionsMontant7JoursChartType">
+      </canvas>
+    </div>
+  </div>
+
+</div>

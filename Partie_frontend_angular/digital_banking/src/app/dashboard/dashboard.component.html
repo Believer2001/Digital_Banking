@@ -1,0 +1,101 @@
+
+<div class="container mt-4">
+  <div class="row">
+    <!-- Bar Chart -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Graphique des ventes</div>
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="barChartData"
+                  [type]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Répartition des produits</div>
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [type]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+
+      <div *ngFor="let compte of comptes" class="col-md-4 mb-3">
+        <div class="card">
+
+          <div class="card-header"> Type de  comptant </div>
+          <div class ="card-body">
+            <div class="card text-center shadow-sm">
+              <div class="card-header bg-primary text-white">
+                {{ compte.type }}
+              </div>
+              <div class="card-body">
+                <h3>{{ compte.solde | number:'1.2-2' }} {{ compte.devise }}</h3>
+                <p>Solde actuel</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </div>
+
+
+
+
+ <div class="row">
+
+   <!-- Historique transactions en table -->
+
+   <div class="col-md-6 mb-4">
+     <h4 class="mt-4">Historique des transactions récentes</h4>
+     <table class="table table-striped">
+       <thead>
+       <tr>
+         <th>Date</th>
+         <th>Description</th>
+         <th>Montant (€)</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let t of transactions">
+         <td>{{ t.date }}</td>
+         <td>{{ t.description }}</td>
+         <td [ngClass]="{'text-danger': t.montant < 0, 'text-success': t.montant > 0}">
+           {{ t.montant | number:'1.2-2' }}
+         </td>
+       </tr>
+       </tbody>
+     </table>
+   </div>
+
+
+    <div class="col-md-6 mb-4">
+
+      <!-- Line chart -->
+      <h4 class="mt-5">Évolution du solde</h4>
+      <div style="max-width: 700px;">
+        <canvas baseChart
+                [data]="lineChartData"
+                [type]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+ </div>
+
+
+
+
+
+</div>
